@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html">
+  <h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ 
+    <title>Admin</title>
+ 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+ 
+  </h:head>
+  <h:body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+				</div>
+			</div>
+			<br></br>
+			<h3 class="text-center">
+				Olá Administrador, #{sessionScope.usuario}!
+			</h3>
+			<div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-2">
+				<!--Imagem de Perfil-->
+					<img alt="perfil" src="resources/perfil-twitter.png" class="img-circle" style="width:50%"/>
+					<p>
+						<a href="login.xhtml">Fazer logout</a>
+					</p>
+				</div>
+			</div>
+			
+			<!--Alertas-->
+			<div class="row">
+				<div class="col-md-4">								
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+							<th class="alert alert-dismissable alert-info">
+									Alterar Usuários
+							</th>
+							</tr>
+						</thead>
+						<thead>
+							<tr>
+								<th>
+									User1
+								</th>
+								<th>
+									User2
+								</th>
+								<th>
+									User3
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									4
+								</td>
+								<td>
+									8
+								</td>
+								<td>
+									12
+								</td>
+							</tr>
+						</tbody>
+					</table>
+</div>
+		
+				<div class="col-md-4">
+				<div align="center">
+					<img src="grafico.png" align="center" class="img-circle"/>
+				</div>
+				<div><br/><br/><br/><br/></div>
+				<div align="center">
+					<img src="grafico.png" align="center" class="img-circle"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+ <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </h:body>
+</html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html">
+  <h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ 
+    <title>Cadastro</title>
+ 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+ 
+  </h:head>
+  <h:body>
+  <h:messages/>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 col-xs-6">
+		<br></br>
+			<div class="row">
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4 col-xs-6">
+				<a href="login.xhtml">
+					<button type="button" class="btn btn-primary btn-default right" align="right">
+						Login
+					</button>
+				</a>
+				</div>
+			</div>
+			<h3 class="text-center">
+				Cadastre-se
+			</h3>
+			<div class="row">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+					<h:form class="form-horizontal" role="form">
+						<div class="form-group">
+						<!--Nome-->
+						<div class="form-group">
+						<label for="campo-nome" class="col-sm-4 control-label">
+								Nome
+						</label>
+						
+						<div class="col-sm-12">
+						<h:inputText class="form-control" value="#{usuarioBean.nome}" id="campo-nome"/>
+						</div>
+						</div>
+						
+						<!--E-mail-->	 
+						<div class="form-group">
+						<label for="campo-login" class="col-sm-4 control-label">
+								E-mail
+						</label>
+						
+						<div class="col-sm-12">
+						<h:inputText class="form-control" value="#{usuarioBean.login}" id="campo-login"/>
+						</div>
+						</div>
+						
+						<!--CPF-->
+						<div class="form-group">	 
+						<label for="campo-cpf" class="col-sm-4 control-label">
+							    CPF
+						</label>
+						
+						<div class="col-sm-12">
+						<h:inputText class="form-control" value="#{usuarioBean.cpf}" id="campo-cpf"/>
+						</div>
+						
+						</div>						
+						<!--Telefone-->							 
+						<div class="form-group">
+						
+						<label for="campo-telefone" class="col-sm-10 control-label">
+							    Telefone (00) 00000-0000
+						</label>
+						
+						<div class="col-sm-12">						
+						<h:inputText class="form-control" value="#{usuarioBean.telefone}" id="campo-telefone"/>
+						</div>
+						
+						</div>
+						
+						<!--Endereço - Rua-->							 
+						<div class="form-group">
+						
+						<label for="campo-endereco" class="col-sm-6 control-label">
+							    Endereço
+						</label>
+						
+						<div class="col-sm-12">						
+						<h:inputText class="form-control" value="#{usuarioBean.endereco}" id="campo-endereco"/>
+						</div>
+						
+						</div>
+										
+						<!--Renda-->							 
+						<div class="form-group">
+						
+						<label for="campo-rendamensal" class="col-sm-6 control-label">
+							    Renda média mensal
+						</label>
+						
+						<div class="col-sm-12">						
+						<h:inputText class="form-control" value="#{usuarioBean.rendamensal}" id="campo-rendamensal"/>
+						</div>
+						
+						</div>
+						
+						<!--Senha-->							 
+						<div class="form-group">
+						
+						<label for="campo-senha" class="col-sm-6 control-label">
+							    Senha
+						</label>
+						
+						<div class="col-sm-12">						
+						<h:inputSecret class="form-control" value="#{usuarioBean.senha}" id="campo-senha"/>
+						</div>
+						
+						</div>
+						
+						<!--Senha Confirma-->							 
+						<div class="form-group">
+						
+						<label for="campo-senha-again" class="col-sm-6 control-label">
+							    Confirme a senha
+						</label>
+						
+						<div class="col-sm-12">						
+						<h:inputSecret class="form-control" value="#{usuarioBean.senha2}" id="campo-senha-again"/>
+						</div>
+						
+						</div>
+						
+						<!--Botão de Cadastro-->	
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-12">
+								<h:commandButton value="Cadastrar" action="#{usuarioBean.cadastra}" class="btn btn-primary btn-default btn-block"/>
+							</div>
+						</div>
+						</div>
+					</h:form>
+				</div>
+				<div class="col-md-4">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </h:body>
+</html>

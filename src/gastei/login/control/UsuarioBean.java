@@ -2,6 +2,7 @@ package gastei.login.control;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -12,8 +13,8 @@ import gastei.login.model.Usuario;
 import gastei.login.repository.UsuarioRepository;
 
 @ManagedBean
+@SessionScoped
 public class UsuarioBean {
-	
 	private String login;
 	private String senha;
 	private String senha2;
@@ -112,11 +113,9 @@ public class UsuarioBean {
 	}
 	
 	public String deslogar() {
-		FacesContext fc =
-				FacesContext.getCurrentInstance();
+		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
-		HttpSession session =
-				(HttpSession) ec.getSession(false);
+		HttpSession session = (HttpSession) ec.getSession(false);
 		session.removeAttribute("usuario");
 		session.invalidate();
 		return "/login";
@@ -139,8 +138,7 @@ public class UsuarioBean {
 			repository.inserir(usuario);
 			return "/login";
 		} else {
-			FacesMessage fm =
-					new FacesMessage("Senhas não são iguais!");
+			FacesMessage fm = new FacesMessage("Senhas não são iguais!");
 			fm.setSeverity(FacesMessage.SEVERITY_ERROR);
 			fc.addMessage(null, fm);
 			return "/cadastro";
@@ -148,13 +146,10 @@ public class UsuarioBean {
 	}
 	
 	private EntityManager getEntityManager() {
-		FacesContext fc =
-				FacesContext.getCurrentInstance();
+		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
-		HttpServletRequest request =
-				(HttpServletRequest) ec.getRequest();
-		EntityManager manager = (EntityManager)
-				request.getAttribute("EntityManager");
+		HttpServletRequest request = (HttpServletRequest) ec.getRequest();
+		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
 		return manager;
 	}
 	

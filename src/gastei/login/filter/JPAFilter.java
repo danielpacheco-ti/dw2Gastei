@@ -36,8 +36,7 @@ public class JPAFilter implements Filter {
 		// place your code here
 
 		// pass the request along the filter chain
-		EntityManager manager =
-				factory.createEntityManager();
+		EntityManager manager = factory.createEntityManager();
 		request.setAttribute("EntityManager", manager);
 		manager.getTransaction().begin();
 		chain.doFilter(request, response);

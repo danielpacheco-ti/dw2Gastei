@@ -1,9 +1,17 @@
 package gastei.login.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="usuario")
+
 public class Usuario {
 
 	@Id
@@ -14,6 +22,8 @@ public class Usuario {
 	private String endereco;
 	private String telefone;
 	private double rendamensal;
+	@OneToMany(cascade=CascadeType.REMOVE)
+	private Collection<Gastos> gasto = new ArrayList<Gastos>();
 
 	public String getLogin() {
 		return login;
@@ -70,5 +80,14 @@ public class Usuario {
 	public void setRendamensal(double rendaMensal) {
 		this.rendamensal = rendaMensal;
 	}
+
+	public Collection<Gastos> getGasto() {
+		return gasto;
+	}
+
+	public void setGasto(Collection<Gastos> gasto) {
+		this.gasto = gasto;
+	}
+	
 	
 }

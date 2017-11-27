@@ -18,8 +18,7 @@ public class UsuarioRepository {
 	}
 	
 	public boolean validar(String login, String senha) {
-		Query query = manager.createQuery(
-				"select c from Usuario c where c.login = ?1 and c.senha = ?2");
+		Query query = manager.createQuery("select c from Usuario c where c.login = ?1 and c.senha = ?2");
 		query.setParameter(1, login).setParameter(2, senha);
 		try {
 			query.getSingleResult();

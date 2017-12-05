@@ -1,5 +1,8 @@
 package gastei.login.control;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -9,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import gastei.login.model.Gastos;
 import gastei.login.model.Usuario;
 import gastei.login.repository.UsuarioRepository;
 
@@ -23,6 +27,7 @@ public class UsuarioBean {
 	private String endereco;
 	private String telefone;
 	private float rendamensal;
+	private Collection<Gastos> gasto = new ArrayList<Gastos>();
 	
 	public String getLogin() {
 		return login;
@@ -87,6 +92,14 @@ public class UsuarioBean {
 	public void setRendamensal(float rendaMensal) {
 		this.rendamensal = rendaMensal;
 	}
+	
+	public Collection<Gastos> getGasto() {
+		return gasto;
+	}
+
+	public void setGasto(Collection<Gastos> gasto) {
+		this.gasto = gasto;
+	}
 
 	public String autentica() {
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -124,8 +137,7 @@ public class UsuarioBean {
 	public String cadastra() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		EntityManager manager = getEntityManager();
-		UsuarioRepository repository =
-				new UsuarioRepository(manager);
+		UsuarioRepository repository = new UsuarioRepository(manager);
 		if(senha.equals(senha2)) {
 			Usuario usuario = new Usuario();
 			usuario.setLogin(login);
@@ -153,5 +165,4 @@ public class UsuarioBean {
 		return manager;
 	}
 	
-
 }

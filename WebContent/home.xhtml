@@ -1,295 +1,150 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
-  <h:head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
- 
-    <title>Gastei!</title>
-    <link rel="shortcut icon" type="image/x-icon" href="resources/money.ico" />
- 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
- 
-  </h:head>
-  <h:body>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-4">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Gastei!</title>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="resources/money.ico" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+		integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+		crossorigin="anonymous" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+		integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+		crossorigin="anonymous"></script>
+
+</h:head>
+<h:body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4"></div>
+					<div class="col-md-4"></div>
 				</div>
-				<div class="col-md-4">
-				</div>
-				<div class="col-md-4">
-				</div>
-			</div>
-			<br></br>
-			<h3 class="text-center">
-				Bem-vindo, #{sessionScope.usuario}
-			</h3>
-			<div class="row">
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				<!--Imagem de Perfil-->
-					<img alt="perfil" src="resources/perfil-twitter.png" class="img-circle" style="width:50%"/>
-					<p>
-						<a href="login.xhtml">Fazer logout</a>
-					</p>
-				</div>
-			</div>
-			
-			<!--Alertas-->
-			<div class="row">
-				<div class="col-md-4">
-				
-					<div class="alert alert-dismissable alert-danger">
-						 
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-							×
-						</button>
-						<h4>
-							Alerta!
-						</h4> <strong>Ops!</strong> Não deixe de pagar sua conta atrasada, os juros podem estar correndo.
+				<br></br>
+				<h3 class="text-center">Bem-vindo, #{sessionScope.usuario}</h3>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2">
+						<!--Imagem de Perfil-->
+						<img alt="perfil" src="resources/perfil-twitter.png"
+							class="img-circle" style="width: 50%" />
+						<p>
+							<a href="login.xhtml">Fazer logout</a>
+						</p>
 					</div>
-					
-					<div class="alert alert-dismissable alert-info">
-						 
-						<!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				</div>
+
+				<!--Alertas-->
+				<div class="row">
+					<div class="col-md-4">
+
+						<div class="alert alert-dismissable alert-danger">
+
+							<button type="button" class="close" data-dismiss="alert"
+								aria-hidden="true">×</button>
+							<h4>Alerta!</h4>
+							<strong>Ops!</strong> Não deixe de pagar sua conta atrasada, os
+							juros podem estar correndo.
+						</div>
+
+						<div class="alert alert-dismissable alert-info">
+
+							<!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 							×
 						</button>-->
-						<h4>
-							Alerta!
-						</h4> <strong>Oba!</strong> Você conseguiu fazer uma reserva esse mês!
-					</div>
-									
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-							<th class="alert alert-dismissable alert-info">
-									Reserva
-							</th>
-							</tr>
-						</thead>
-						<thead>
-							<tr>
-								<th>
-									Data
-								</th>
-								<th>
-									Valor (R$)
-								</th>
-								<th>
-									Objetivo
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									15/07
-								</td>
-								<td>
-									50,00
-								</td>
-								<td>
-									Viagem
-								</td>
-							</tr>
-						</tbody>
-					</table>
-</div>
+							<h4>Alerta!</h4>
+							<strong>Oba!</strong> Você conseguiu fazer uma reserva esse mês!
+						</div>
 
-				<!--Tabela 1-->
-				<div class="col-md-4">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>
-									Gastos fixos
-								</th>
-								<th>
-									Dia
-								</th>
-								<th>
-									Valor (R$)
-								</th>
-								<th>
-									Status
-								</th>
-								<th>
-									
-								</th>
-							</tr>
-						</thead>
-						<tbody>  
-							<tr>
-								<td>
-									<a href="cadastroGasto.xhtml">Adicionar</a>
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
-								<td align="center">
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					
-					<!--Tabela 2-->
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>
-									Gastos esporádicos
-								</th>
-								<th>
-									Descrição
-								</th>
-								<th>
-									Dia
-								</th>
-								<th>
-									Mês
-								</th>
-								<th>
-									Valor (R$)
-								</th>
-								<th>
-									Status
-								</th>
-							<td>
-								</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									Boleto
-								</td>
-								<td>
-									Curso de Inglês
-								</td>
-								<td>
-									20
-								</td>
-								<td>
-									janeiro
-								</td>
-								<td>
-									350,00
-								</td>
-								<td class="alert alert-success alert-dismissable">
-									Pago
-								</td>
-								<td>
-								<a href="#">Editar</a>
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									Alimentação
-								</td>
-								<td>
-									Jantar Mexicano
-								</td>
-								<td>
-									21
-								</td>
-								<td>
-									janeiro
-								</td>
-								<td>
-									70,00
-								</td>
-								<td class="alert alert-success alert-dismissable">
-									Pago
-								</td>
-								<td>
-								<a href="#">Editar</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Viagem
-								</td>
-								<td>
-									México
-								</td>
-								<td>
-									15
-								</td>
-								<td>
-									julho
-								</td>
-								<td>
-									50,00
-								</td>
-								<td class="alert alert-dismissable alert-info">
-									Reserva
-								</td>
-								<td align="center">
-								<a href="#">Editar</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<a href="#">Adicionar</a>
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
-								<td align="center">
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-		
-				<div class="col-md-4">
-				<div align="center">
-					<img src="resources/grafico.png" align="center" class="img-circle"/>
-				</div>
-				<div><br/><br/><br/><br/></div>
-				<div align="center">
-					<img src="resources/grafico.png" align="center" class="img-circle"/>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th class="alert alert-dismissable alert-info">Reserva</th>
+								</tr>
+							</thead>
+							<thead>
+								<tr>
+									<th>Data</th>
+									<th>Valor (R$)</th>
+									<th>Objetivo</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>15/07</td>
+									<td>50,00</td>
+									<td>Viagem</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!--Tabela 1-->
+					<div class="col-md-5">
+						<h:panelGroup rendered="#{not empty gastosBean.gastos}">
+							<h:form>
+								<h:dataTable class="table table-bordered"
+									value="#{gastosBean.gastos}" var="gastos" border="1"
+									cellpadding="2" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Gastos Fixos" />
+									</f:facet>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Nome" />
+										</f:facet>
+										<h:outputText value="#{gastos.nome}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Descrição" />
+										</f:facet>
+										<h:outputText value="#{gastos.descricao}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Valor" />
+										</f:facet>
+										<h:outputText value="R$ #{gastos.valor}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Data do Pagamento" />
+										</f:facet>
+										<h:outputText value="#{gastos.dataGasto}" />
+										<f:attribute name="width" value="15%" />
+									</h:column>
+									<f:facet name="footer">
+										<h:column>
+											<a href="cadastroGasto.xhtml">Adicionar</a>
+										</h:column>
+									</f:facet>
+								</h:dataTable>
+							</h:form>
+						</h:panelGroup>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
- <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-  </h:body>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+</h:body>
 </html>

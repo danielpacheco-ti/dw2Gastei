@@ -17,6 +17,19 @@ public class UsuarioRepository {
 		manager.persist(usuario);
 	}
 	
+	public Usuario buscaUser(String login) {
+		Usuario user;
+		Query query = manager.createQuery("select c from Usuario c where c.login = ?1");
+		query.setParameter(1, login);
+		try {
+			user = (Usuario) query.getSingleResult();
+			return user;
+		} catch (NoResultException e) {
+			return null;
+		}
+		
+	}
+		
 	public boolean validar(String login, String senha) {
 		Query query = manager.createQuery("select c from Usuario c where c.login = ?1 and c.senha = ?2");
 		query.setParameter(1, login).setParameter(2, senha);

@@ -22,7 +22,7 @@ public class Usuario {
 	private String endereco;
 	private String telefone;
 	private double rendamensal;
-	@OneToMany(cascade=CascadeType.REMOVE)
+	@OneToMany(cascade=CascadeType.REMOVE, mappedBy="user")
 	private Collection<Gastos> gasto = new ArrayList<Gastos>();
 
 	public String getLogin() {

@@ -1,6 +1,8 @@
 package gastei.login.control;
 
-import java.util.Calendar;
+
+
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -10,8 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import gastei.login.model.Gastos;
-import gastei.login.model.Usuario;	
+import gastei.login.model.Usuario;
 import gastei.login.repository.GastosRepository;
+import gastei.login.repository.UsuarioRepository;
 
 @ManagedBean
 public class GastosBean {
@@ -21,7 +24,7 @@ public class GastosBean {
 	private double valor;
 	private String dataGasto;
 	private String dataVencimento;
-	private String status;
+
 	
 	public long getId() {
 		return id;
@@ -59,29 +62,27 @@ public class GastosBean {
 	public void setDataVencimento(String dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
 	
 	public String cadastra() {
-		FacesContext fc = FacesContext.getCurrentInstance();
 		EntityManager manager = getEntityManager();
 		GastosRepository repository = new GastosRepository(manager);
+		UsuarioRepository userRep = new UsuarioRepository (manager);
+		Usuario user = new Usuario ();
+		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		HttpSession session = (HttpSession) ec.getSession(false);
-		Usuario_gastosBean userGasto = new Usuario_gastosBean();
+		String login = (String) session.getAttribute("usuario");
+		System.out.println(login);
+		user = userRep.buscaUser(login);
+		System.out.println(user.getLogin());
 			Gastos gasto = new Gastos();
 			gasto.setDataGasto(dataGasto);
 			gasto.setDataVencimento(dataVencimento);
 			gasto.setDescricao(descricao);
 			gasto.setNome(nome);
-			gasto.setStatus(status);
 			gasto.setValor(valor);
-			repository.inserir(gasto);
-			userGasto.cadastra();
+			gasto.setUser(user);
+			repository.inserir(gasto);			
 			return "/home";
 	}
 	
@@ -93,6 +94,15 @@ public class GastosBean {
 		return manager;
 	}
 	
-	
+	public List <Gastos> getGastos (){
+		EntityManager manager = getEntityManager();
+		GastosRepository repository = new GastosRepository(manager);
+		UsuarioRepository repositoryUser = new UsuarioRepository(manager);
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpSession session = (HttpSession) ec.getSession(false);
+		String login = (String) session.getAttribute("usuario");
+		return repository.buscaGastos(repositoryUser.buscaUser(login));
+	}
 
 }

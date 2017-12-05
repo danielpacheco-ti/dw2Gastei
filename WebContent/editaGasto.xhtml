@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Gastei!</title>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="resources/money.ico" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+		integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+		crossorigin="anonymous" />
+	<link rel="stylesheet"
+		href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+		integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+		crossorigin="anonymous">
+	</script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+	<h:outputScript library="js" name="formatDatePicker.js" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	
+	
+</h:head>
+<h:body>
+	<h:messages />
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 col-xs-6">
+				<br></br>
+				<div class="row"></div>
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4"></div>
+				</div>
+				<h3 class="text-center">Editar Gasto</h3>
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<h:form class="form-horizontal" role="form">
+							<div class="form-group">
+								<!--Nome-->
+								<div class="form-group">
+									<label for="campo-nome" class="col-sm-4 control-label">
+										Nome </label>
+
+									<div class="col-sm-12">
+										<h:inputText class="form-control" value="#{gasto.nome}"
+											id="campo-nome" />
+									</div>
+								</div>
+
+								<!--Descrição-->
+								<div class="form-group">
+									<label for="campo-descricao" class="col-sm-4 control-label">
+										Descrição </label>
+
+									<div class="col-sm-12">
+										<h:inputText class="form-control"
+											value="#{gasto.descricao}" id="campo-descricao" />
+									</div>
+								</div>
+
+								<!--Valor-->
+								<div class="form-group">
+									<label for="campo-valor" class="col-sm-4 control-label">
+										Valor </label>
+
+									<div class="col-sm-12">
+										<h:inputText class="form-control" value="#{gasto.valor}"
+											id="campo-valor" />
+									</div>
+
+								</div>
+								<!--Data Gasto-->
+								<div class="form-group">
+
+									<h:outputLabel value="Data do gasto" styleClass="control-label col-sm-8" />
+
+									<div class="col-sm-12">
+										<h:inputText styleClass="form-control datepicker"
+											value="#{gasto.dataGasto}"
+											id="campo-dataGasto" />
+									</div>
+								</div>
+
+
+
+								<!--Data Vencimento-->
+								<div class="form-group">
+
+									<h:outputLabel value="Data de Vencimento" styleClass="control-label col-sm-8" />
+									<div class="col-sm-12">
+										<h:inputText styleClass="form-control datepicker"
+											value="#{gasto.dataVencimento}"
+											id="campo-dataVencimento" />
+									</div>
+								</div>
+
+								<!--Botão de Cadastro-->
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-12">
+										<h:commandButton value="Editar"
+											action="#{gastosBean.atualizar(gasto.id)}"
+											class="btn btn-primary btn-default btn-block" />
+									</div>
+								</div>
+							</div>
+						</h:form>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+</h:body>
+</html>

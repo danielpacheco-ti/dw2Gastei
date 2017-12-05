@@ -96,7 +96,7 @@
 					</div>
 
 					<!--Tabela 1-->
-					<div class="col-md-5">
+					<div class="col-md-7">
 						<h:panelGroup rendered="#{not empty gastosBean.gastos}">
 							<h:form>
 								<h:dataTable class="table table-bordered"
@@ -125,9 +125,22 @@
 									</h:column>
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Data do Pagamento" />
+											<h:outputText value="Vencimento" />
+										</f:facet>
+										<h:outputText value="#{gastos.dataVencimento}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Pagamento" />
 										</f:facet>
 										<h:outputText value="#{gastos.dataGasto}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="" />
+										</f:facet>
+										<h:commandButton action="#{gastosBean.editaGasto(gastos.id)}"
+											class="btn btn-primary btn-default btn-block" value="Editar" />
 									</h:column>
 									<f:facet name="footer">
 										<h:column>

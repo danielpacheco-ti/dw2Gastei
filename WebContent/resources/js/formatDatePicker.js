@@ -1,8 +1,8 @@
 $(document).ready(function() {
-	$( ".datepicker" ).datepicker({
-		dateFormat: 'dd MM, yy',
+	$(".datepicker").datepicker({
+		dateFormat: 'dd/mm/yy',
 		changeMonth: true,
 		changeYear: true,
-		yearRange: "1960:2017"
+		yearRange: "2000:2017"
 	});
 });

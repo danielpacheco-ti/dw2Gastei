@@ -26,6 +26,22 @@ private EntityManager manager;
 		manager.remove(gasto);
 	}
 	
+	public void atualizar(Gastos gasto) {
+		manager.merge(gasto);
+	}
+	
+	public Gastos buscaGasto(long id) {
+		Query query = manager.createQuery("select c from Gastos c where c.id = ?1");
+		Gastos gasto = new Gastos();
+		query.setParameter(1, id);
+		try {
+			gasto = (Gastos) query.getSingleResult();
+			return gasto;
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
 	public List <Gastos> buscaGastos (Usuario user){
 		List <Gastos> gastosUser = new ArrayList<Gastos>();
 		Query query = manager.createQuery("select c from Gastos c where c.user = ?1");

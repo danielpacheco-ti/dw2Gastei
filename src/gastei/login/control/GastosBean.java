@@ -1,7 +1,5 @@
 package gastei.login.control;
 
-
-
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -25,49 +23,59 @@ public class GastosBean {
 	private String dataGasto;
 	private String dataVencimento;
 
-	
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public double getValor() {
 		return valor;
 	}
+
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public String getDataGasto() {
 		return dataGasto;
 	}
+
 	public void setDataGasto(String dataGasto) {
 		this.dataGasto = dataGasto;
 	}
+
 	public String getDataVencimento() {
 		return dataVencimento;
 	}
+
 	public void setDataVencimento(String dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
-	
+
 	public String cadastra() {
 		EntityManager manager = getEntityManager();
 		GastosRepository repository = new GastosRepository(manager);
-		UsuarioRepository userRep = new UsuarioRepository (manager);
-		Usuario user = new Usuario ();
+		UsuarioRepository userRep = new UsuarioRepository(manager);
+		Usuario user = new Usuario();
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		HttpSession session = (HttpSession) ec.getSession(false);
@@ -75,26 +83,42 @@ public class GastosBean {
 		System.out.println(login);
 		user = userRep.buscaUser(login);
 		System.out.println(user.getLogin());
-			Gastos gasto = new Gastos();
-			gasto.setDataGasto(dataGasto);
-			gasto.setDataVencimento(dataVencimento);
-			gasto.setDescricao(descricao);
-			gasto.setNome(nome);
-			gasto.setValor(valor);
-			gasto.setUser(user);
-			repository.inserir(gasto);			
-			return "/home";
+		Gastos gasto = new Gastos();
+		gasto.setDataGasto(dataGasto);
+		gasto.setDataVencimento(dataVencimento);
+		gasto.setDescricao(descricao);
+		gasto.setNome(nome);
+		gasto.setValor(valor);
+		gasto.setUser(user);
+		repository.inserir(gasto);
+		return "/home";
 	}
 	
-	private EntityManager getEntityManager() {
+	public String atualizar(long id) {
+		EntityManager manager = getEntityManager();
+		GastosRepository repository = new GastosRepository(manager);
+		Gastos gasto = repository.buscaGasto(id);
+		gasto.setDataGasto(dataGasto);
+		gasto.setDataVencimento(dataVencimento);
+		gasto.setDescricao(descricao);
+		gasto.setNome(nome);
+		gasto.setValor(valor);
+		repository.atualizar(gasto);
+		return "/home";
+	}
+	
+	public String editaGasto(long id) {
+		EntityManager manager = getEntityManager();
+		GastosRepository repository = new GastosRepository(manager);
+		Gastos gasto = repository.buscaGasto(id);
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) ec.getRequest();
-		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
-		return manager;
+		request.setAttribute("gasto", gasto);
+		return "/editaGasto";
 	}
-	
-	public List <Gastos> getGastos (){
+
+	public List<Gastos> getGastos() {
 		EntityManager manager = getEntityManager();
 		GastosRepository repository = new GastosRepository(manager);
 		UsuarioRepository repositoryUser = new UsuarioRepository(manager);
@@ -103,6 +127,14 @@ public class GastosBean {
 		HttpSession session = (HttpSession) ec.getSession(false);
 		String login = (String) session.getAttribute("usuario");
 		return repository.buscaGastos(repositoryUser.buscaUser(login));
+	}
+
+	private EntityManager getEntityManager() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpServletRequest request = (HttpServletRequest) ec.getRequest();
+		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
+		return manager;
 	}
 
 }

@@ -138,12 +138,8 @@
 							</h:panelGroup>	
 						
 						<h:form>
-							<h:panelGrid columns="3" cellpadding="0" cellspacing="0"
-							class="center">
-								<h:dataTable class="table" 
-									value="#{gastosBean.gastos}" var="gastos" border="0"
-									cellpadding="0" cellspacing="200" align="center">
-									
+							<h:panelGrid columns="3" cellpadding="8" cellspacing="2000"
+							class="center">									
 										<h:column>										
 											<h:commandButton action="cadastroGasto.xhtml" class="btn btn-primary btn-default btn-block" value="Adicionar Gasto" />
 										</h:column>
@@ -154,8 +150,6 @@
 										<h:column>
 											<h:commandButton action="#{usuarioBean.deslogar}" class="btn btn-primary btn-default btn-block" value="Logout" />
 										</h:column>
-							</h:dataTable>
-						
 							</h:panelGrid>				
 								<h:panelGrid columns="2" class="table table-bordered table-dark" border="1"
 									cellpadding="2" cellspacing="0">

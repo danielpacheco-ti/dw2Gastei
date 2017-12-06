@@ -1,110 +1,124 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
-  <h:head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
- 
-    <title>Admin</title>
-    <link rel="shortcut icon" type="image/x-icon" href="resources/money.ico" />
- 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
- 
-  </h:head>
-  <h:body>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-4">
-				</div>
-				<div class="col-md-4">
-				</div>
-				<div class="col-md-4">
-				</div>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Admin</title>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="resources/money.ico" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+		integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+		crossorigin="anonymous" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+		integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+		crossorigin="anonymous"></script>
+
+</h:head>
+<h:body>
+	<div class="container-fluid">
+		<br /> <br /> <br />
+		<h3 class="text-center">Olá Administrador,
+			#{sessionScope.nome}!</h3>
+		<!--Alertas-->
+		<br /> <br /> <br />
+		<div align="center">
+			<div class="col-md-20">
+				<h:panelGroup rendered="#{not empty usuarioBean.usuarios}">
+					<h:form>
+						<h:dataTable class="table table-bordered table-dark"
+							value="#{usuarioBean.usuarios}" var="usuarios" border="1"
+							cellpadding="" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Usuarios" />
+							</f:facet>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Login" />
+								</f:facet>
+								<h:outputText value="#{usuarios.login}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="CPF" />
+								</f:facet>
+								<h:outputText value="#{usuarios.cpf}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Nome" />
+								</f:facet>
+								<h:outputText value="#{usuarios.nome}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Renda Mensal" />
+								</f:facet>
+								<h:outputText value="R$ #{usuarios.rendamensal}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Telefone" />
+								</f:facet>
+								<h:outputText value="#{usuarios.telefone}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="" />
+								</f:facet>
+								<h:commandButton
+									action="#{usuarioBean.editaUsuario(usuarios.login)}"
+									class="btn btn-primary btn-default btn-block" value="Editar" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="" />
+								</f:facet>
+								<h:commandButton
+									action="#{usuarioBean.excluirUsuario(usuarios.login)}"
+									class="btn btn-primary btn-default btn-block" value="Excluir" />
+							</h:column>
+						</h:dataTable>
+						<h:panelGrid columns="8" cellpadding="6" cellspacing="2000"
+							class="center">
+							<h:column>
+								<h:commandButton action="cadastroAdmin.xhtml"
+									class="btn btn-primary btn-default"
+									value="Cadastrar Administrador" />
+							</h:column>
+							<h:column>
+								<h:commandButton action="#{usuarioBean.deslogar}"
+									class="btn btn-primary btn-default" value="Logout" />
+							</h:column>
+						</h:panelGrid>
+					</h:form>
+				</h:panelGroup>
 			</div>
-			<br></br>
-			<h3 class="text-center">
-				Olá Administrador, #{sessionScope.usuario}!
-			</h3>
-			<div class="row">
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
-				<!--Imagem de Perfil-->
-					<img alt="perfil" src="resources/perfil-twitter.png" class="img-circle" style="width:50%"/>
-					<p>
-						<a href="login.xhtml">Fazer logout</a>
-					</p>
-				</div>
+		</div>
+
+		<div class="col-md-4">
+			<div align="center">
+				<img src="grafico.png" align="center" class="img-circle" />
 			</div>
-			
-			<!--Alertas-->
-			<div class="row">
-				<div class="col-md-4">								
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-							<th class="alert alert-dismissable alert-info">
-									Alterar Usuários
-							</th>
-							</tr>
-						</thead>
-						<thead>
-							<tr>
-								<th>
-									User1
-								</th>
-								<th>
-									User2
-								</th>
-								<th>
-									User3
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									4
-								</td>
-								<td>
-									8
-								</td>
-								<td>
-									12
-								</td>
-							</tr>
-						</tbody>
-					</table>
-</div>
-		
-				<div class="col-md-4">
-				<div align="center">
-					<img src="grafico.png" align="center" class="img-circle"/>
-				</div>
-				<div><br/><br/><br/><br/></div>
-				<div align="center">
-					<img src="grafico.png" align="center" class="img-circle"/>
-				</div>
+			<div>
+				<br /> <br /> <br /> <br />
+			</div>
+			<div align="center">
+				<img src="grafico.png" align="center" class="img-circle" />
 			</div>
 		</div>
 	</div>
-</div>
-</div>
- <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-  </h:body>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+</h:body>
 </html>

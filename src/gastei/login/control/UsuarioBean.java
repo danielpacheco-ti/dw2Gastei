@@ -2,6 +2,7 @@ package gastei.login.control;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import gastei.login.model.Gastos;
 import gastei.login.model.Usuario;
+import gastei.login.repository.GastosRepository;
 import gastei.login.repository.UsuarioRepository;
 
 @ManagedBean
@@ -105,15 +107,19 @@ public class UsuarioBean {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		EntityManager manager = getEntityManager();
 		UsuarioRepository repository = new UsuarioRepository(manager);
+		Usuario user = repository.buscaUser(login);
 		if(repository.validar(login, senha)) {
-			if(login.equals("admin")) {
+			if(login.equals("admin") || user.isAdmin()) {
 				ExternalContext ec = fc.getExternalContext();
 				HttpSession session = (HttpSession) ec.getSession(false);
 				session.setAttribute("usuario", login);
+				session.setAttribute("nome", user.getNome());
+				session.setAttribute("user", repository.buscaUser(login));
 				return "/homeAdmin";
 			} else {
 			ExternalContext ec = fc.getExternalContext();
 			HttpSession session = (HttpSession) ec.getSession(false);
+			session.setAttribute("nome", user.getNome());
 			session.setAttribute("usuario", login);
 			return "/home";
 			}
@@ -147,6 +153,7 @@ public class UsuarioBean {
 			usuario.setNome(nome);
 			usuario.setRendamensal(rendamensal);
 			usuario.setTelefone(telefone);
+			usuario.setAdmin(false);
 			repository.inserir(usuario);
 			return "/login";
 		} else {
@@ -156,6 +163,70 @@ public class UsuarioBean {
 			return "/cadastro";
 		}
 	}
+	
+	public String cadastraAdmin() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		if(senha.equals(senha2)) {
+			Usuario usuario = new Usuario();
+			usuario.setLogin(login);
+			usuario.setSenha(senha);
+			usuario.setCpf(cpf);
+			usuario.setNome(nome);
+			usuario.setTelefone(telefone);
+			usuario.setAdmin(true);
+			repository.inserir(usuario);
+			return "/homeAdmin";
+		} else {
+			FacesMessage fm = new FacesMessage("Senhas não são iguais!");
+			fm.setSeverity(FacesMessage.SEVERITY_ERROR);
+			fc.addMessage(null, fm);
+			return "/cadastroAdmin";
+		}
+	}
+	
+	public List<Usuario> getUsuarios() {
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		return repository.buscaUsuarios();
+	}
+	
+	public String editaUsuario(String login) {
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		Usuario user = repository.buscaUser(login);
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpSession session = (HttpSession) ec.getSession(false);
+		session.setAttribute("usuarioEd", user);
+		return "/alteraUser";
+	}
+	
+	public String atualizar() {
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpSession session = (HttpSession) ec.getSession(false);
+		Usuario user = (Usuario) session.getAttribute("usuarioEd");
+		user.setTelefone(user.getTelefone());
+		user.setEndereco(user.getEndereco());
+		user.setRendamensal(user.getRendamensal());
+		user.setSenha(user.getSenha());
+		repository.atualizar(user);
+		session.removeAttribute("gastos");
+		return "/homeAdmin";
+	}
+	
+	public String excluirUsuario(String login) {
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		Usuario user = repository.buscaUser(login);
+		repository.excluir(user);
+		return "/homeAdmin";
+	}
+	
 	
 	private EntityManager getEntityManager() {
 		FacesContext fc = FacesContext.getCurrentInstance();

@@ -45,31 +45,20 @@
 					<div class="col-md-4"></div>
 					<div class="col-md-4"></div>
 				</div>
-				<h3 class="text-center">Editar Gasto</h3>
+				<h3 class="text-center">Novo gasto</h3>
 				<div class="row">
 					<div class="col-md-4"></div>
 					<div class="col-md-4">
 						<h:form class="form-horizontal" role="form">
 							<div class="form-group">
-								<!--Nome-->
-								<div class="form-group">
-									<label for="campo-nome" class="col-sm-4 control-label">
-										Nome </label>
-
-									<div class="col-sm-12">
-										<h:inputText class="form-control" value="#{gastos.nome}"
-											id="campo-nome" />
-									</div>
-								</div>
-
 								<!--Descrição-->
 								<div class="form-group">
 									<label for="campo-descricao" class="col-sm-4 control-label">
 										Descrição </label>
 
 									<div class="col-sm-12">
-										<h:inputText class="form-control" value="#{gastos.descricao}"
-											id="campo-descricao" />
+										<h:inputText class="form-control"
+											value="#{gastosBean.descricao}" id="campo-descricao" />
 									</div>
 								</div>
 
@@ -77,46 +66,25 @@
 								<div class="form-group">
 									<label for="campo-valor" class="col-sm-4 control-label">
 										Valor </label>
-
 									<div class="col-sm-12">
-										<h:inputText class="form-control" value="#{gastos.valor}"
+										<h:inputText class="form-control" value="#{gastosBean.valor}"
 											id="campo-valor" />
 									</div>
-
 								</div>
-								<!--Data Gasto-->
+								<!--Data Reserva-->
 								<div class="form-group">
-
-									<h:outputLabel value="Data do gasto"
-										styleClass="control-label col-sm-8" />
-
-									<div class="col-sm-12">
-										<h:inputText styleClass="form-control datepicker"
-											value="#{gastos.dataGasto}" id="campo-dataGasto" />
-									</div>
-								</div>
-								<!--Data Vencimento-->
-								<div class="form-group">
-
-									<h:outputLabel value="Data de Vencimento"
+									<h:outputLabel value="Data da Reserva"
 										styleClass="control-label col-sm-8" />
 									<div class="col-sm-12">
 										<h:inputText styleClass="form-control datepicker"
-											value="#{gastos.dataVencimento}" />
+											value="#{gastosBean.dataGasto}" id="campo-dataGasto" />
 									</div>
 								</div>
-								<!--Botão de Editar-->
+								<!--Botão de Cadastro-->
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-12">
-										<h:commandButton value="Atualizar"
-											action="#{gastosBean.atualizar}"
-											class="btn btn-primary btn-default btn-block" />
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-offset-2 col-sm-12">
-										<h:commandButton value="Excluir"
-											action="#{gastosBean.excluirGasto}"
+										<h:commandButton value="Cadastrar"
+											action="#{gastosBean.cadastraReserva}"
 											class="btn btn-primary btn-default btn-block" />
 									</div>
 								</div>

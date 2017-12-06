@@ -29,81 +29,72 @@
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-4"></div>
-					<div class="col-md-4"></div>
-					<div class="col-md-4"></div>
+					<div class="col-md-8"></div>
 				</div>
 				<br></br>
-				<h3 class="text-center">Bem-vindo, #{sessionScope.usuario}</h3>
+				<h3 class="text-center">Bem-vindo, #{sessionScope.nome}</h3>
 				<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-2"></div>
-					<div class="col-md-2"></div>
-					<div class="col-md-2"></div>
-					<div class="col-md-2"></div>
-					<div class="col-md-2">
-						<!--Imagem de Perfil-->
-						<img alt="perfil" src="resources/perfil-twitter.png"
-							class="img-circle" style="width: 50%" />
-						<p>
-							<a href="login.xhtml">Fazer logout</a>
-						</p>
-					</div>
+					<div class="col-md-4"></div>
+					<div class="col-md-4 col-sm-2"  align="center"><!--Imagem de Perfil-->
+						<img alt="perfil" src="resources/money.ico"
+							class="img-circle" style="width: 20%"	/>
+							
+							</div>
+					<div class="col-md-4"></div>
 				</div>
 
-				<!--Alertas-->
+				<!--Reservas-->
 				<div class="row">
-					<div class="col-md-4">
-
-						<div class="alert alert-dismissable alert-danger">
-
-							<button type="button" class="close" data-dismiss="alert"
-								aria-hidden="true">×</button>
-							<h4>Alerta!</h4>
-							<strong>Ops!</strong> Não deixe de pagar sua conta atrasada, os
-							juros podem estar correndo.
-						</div>
-
-						<div class="alert alert-dismissable alert-info">
-
-							<!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-							×
-						</button>-->
-							<h4>Alerta!</h4>
-							<strong>Oba!</strong> Você conseguiu fazer uma reserva esse mês!
-						</div>
-
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th class="alert alert-dismissable alert-info">Reserva</th>
-								</tr>
-							</thead>
-							<thead>
-								<tr>
-									<th>Data</th>
-									<th>Valor (R$)</th>
-									<th>Objetivo</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>15/07</td>
-									<td>50,00</td>
-									<td>Viagem</td>
-								</tr>
-							</tbody>
-						</table>
+					<div class="col-md-4">	
+					<br></br>					
+						<h:panelGroup rendered="#{not empty gastosBean.reserva}">
+							<h:form>
+								<h:dataTable class="table table-bordered table-striped" 
+									value="#{gastosBean.reservas}" var="reserva" border="1"
+									cellpadding="2" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Reserva"/>
+									</f:facet>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Descrição" />
+										</f:facet>
+										<h:outputText value="#{reserva.descricao}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Valor" />
+										</f:facet>
+										<h:outputText value="R$ #{reserva.valor}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Data da reserva" />
+										</f:facet>
+										<h:outputText value="#{reserva.dataGasto}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="" />
+										</f:facet>
+										<h:commandButton action="#{gastosBean.editaReserva(reserva.id)}"
+											class="btn btn-primary btn-default btn-block" value="Editar" />
+									</h:column>
+								</h:dataTable>
+							</h:form>
+						</h:panelGroup>	
 					</div>
 
 					<!--Tabela 1-->
-					<div class="col-md-7">
+					<div class="col-md-8">
+					<br></br>
 						<h:panelGroup rendered="#{not empty gastosBean.gastos}">
 							<h:form>
-								<h:dataTable class="table table-bordered"
-									value="#{gastosBean.gastos}" var="gastos" border="1"
-									cellpadding="2" cellspacing="0">
+								<h:dataTable class="table table-bordered table-striped" 
+									value="#{gastosBean.gastos}" var="gastos" border="0"
+									cellpadding="2" cellspacing="0" align="center">
 									<f:facet name="header">
-										<h:outputText value="Gastos Fixos" />
+										<h:outputText value="Gastos do mês"/>
 									</f:facet>
 									<h:column>
 										<f:facet name="header">
@@ -142,14 +133,39 @@
 										<h:commandButton action="#{gastosBean.editaGasto(gastos.id)}"
 											class="btn btn-primary btn-default btn-block" value="Editar" />
 									</h:column>
-									<f:facet name="footer">
-										<h:column>
-											<a href="cadastroGasto.xhtml">Adicionar</a>
-										</h:column>
-									</f:facet>
 								</h:dataTable>
 							</h:form>
-						</h:panelGroup>
+							</h:panelGroup>	
+						
+						<h:form>
+							<h:panelGrid columns="3" cellpadding="0" cellspacing="0"
+							class="center">
+								<h:dataTable class="table" 
+									value="#{gastosBean.gastos}" var="gastos" border="0"
+									cellpadding="0" cellspacing="200" align="center">
+									
+										<h:column>										
+											<h:commandButton action="cadastroGasto.xhtml" class="btn btn-primary btn-default btn-block" value="Adicionar Gasto" />
+										</h:column>
+										<h:column>
+											<h:commandButton action="cadastroReserva.xhtml" class="btn btn-primary btn-default btn-block" value="Adicionar Reserva" />
+										</h:column>
+						
+										<h:column>
+											<h:commandButton action="#{usuarioBean.deslogar}" class="btn btn-primary btn-default btn-block" value="Logout" />
+										</h:column>
+							</h:dataTable>
+						
+							</h:panelGrid>				
+								<h:panelGrid columns="2" class="table table-bordered table-dark" border="1"
+									cellpadding="2" cellspacing="0">
+   									 <h:panelGroup>Total de gastos do mês</h:panelGroup>
+   									 <h:panelGroup><h:outputLabel value="R$ #{gastosBean.soma}"/></h:panelGroup>
+
+   									 <h:panelGroup>Disponivel para reserva</h:panelGroup>
+   									 <h:panelGroup><h:outputLabel value="R$ #{gastosBean.reserva}"/></h:panelGroup>
+   								</h:panelGrid>
+   						</h:form>	
 					</div>
 				</div>
 			</div>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,6 +23,7 @@ public class Usuario {
 	private String endereco;
 	private String telefone;
 	private double rendamensal;
+	private boolean admin;
 	@OneToMany(cascade=CascadeType.REMOVE, mappedBy="user")
 	private Collection<Gastos> gasto = new ArrayList<Gastos>();
 
@@ -88,6 +90,12 @@ public class Usuario {
 	public void setGasto(Collection<Gastos> gasto) {
 		this.gasto = gasto;
 	}
-	
-	
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}	
 }

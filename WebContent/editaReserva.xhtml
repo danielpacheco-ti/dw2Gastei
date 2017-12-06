@@ -51,72 +51,46 @@
 					<div class="col-md-4">
 						<h:form class="form-horizontal" role="form">
 							<div class="form-group">
-								<!--Nome-->
-								<div class="form-group">
-									<label for="campo-nome" class="col-sm-4 control-label">
-										Nome </label>
-
-									<div class="col-sm-12">
-										<h:inputText class="form-control" value="#{gastos.nome}"
-											id="campo-nome" />
-									</div>
-								</div>
-
 								<!--Descrição-->
 								<div class="form-group">
 									<label for="campo-descricao" class="col-sm-4 control-label">
 										Descrição </label>
-
 									<div class="col-sm-12">
-										<h:inputText class="form-control" value="#{gastos.descricao}"
+										<h:inputText class="form-control" value="#{reserva.descricao}"
 											id="campo-descricao" />
 									</div>
 								</div>
-
 								<!--Valor-->
 								<div class="form-group">
 									<label for="campo-valor" class="col-sm-4 control-label">
 										Valor </label>
 
 									<div class="col-sm-12">
-										<h:inputText class="form-control" value="#{gastos.valor}"
+										<h:inputText class="form-control" value="#{reserva.valor}"
 											id="campo-valor" />
 									</div>
-
 								</div>
 								<!--Data Gasto-->
 								<div class="form-group">
-
-									<h:outputLabel value="Data do gasto"
-										styleClass="control-label col-sm-8" />
-
-									<div class="col-sm-12">
-										<h:inputText styleClass="form-control datepicker"
-											value="#{gastos.dataGasto}" id="campo-dataGasto" />
-									</div>
-								</div>
-								<!--Data Vencimento-->
-								<div class="form-group">
-
-									<h:outputLabel value="Data de Vencimento"
+									<h:outputLabel value="Data da Reserva"
 										styleClass="control-label col-sm-8" />
 									<div class="col-sm-12">
 										<h:inputText styleClass="form-control datepicker"
-											value="#{gastos.dataVencimento}" />
+											value="#{reserva.dataGasto}" id="campo-dataGasto" />
 									</div>
 								</div>
-								<!--Botão de Editar-->
+								<!--Botão de editar-->
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-12">
 										<h:commandButton value="Atualizar"
-											action="#{gastosBean.atualizar}"
+											action="#{gastosBean.atualizarReserva}"
 											class="btn btn-primary btn-default btn-block" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-12">
 										<h:commandButton value="Excluir"
-											action="#{gastosBean.excluirGasto}"
+											action="#{gastosBean.excluirReserva}"
 											class="btn btn-primary btn-default btn-block" />
 									</div>
 								</div>

@@ -19,6 +19,7 @@ public class Gastos {
 	private String dataGasto;
 	private String dataVencimento;
 	private String status;
+	private boolean reserva;
 	@ManyToOne 
 	private Usuario user;
 
@@ -85,5 +86,15 @@ public class Gastos {
 	public void setUser(Usuario user) {
 		this.user = user;
 	}
+
+	public boolean isReserva() {
+		return reserva;
+	}
+
+	public void setReserva(boolean reserva) {
+		this.reserva = reserva;
+	}
+	
+	
 
 }
